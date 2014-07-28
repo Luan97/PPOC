@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "410239AF197B0243002042EF"
-               BuildableName = "PPOC.app"
+               BuildableName = "Library of Congress.app"
                BlueprintName = "PPOC"
                ReferencedContainer = "container:PPOC.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "410239AF197B0243002042EF"
-            BuildableName = "PPOC.app"
+            BuildableName = "Library of Congress.app"
             BlueprintName = "PPOC"
             ReferencedContainer = "container:PPOC.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "410239AF197B0243002042EF"
-            BuildableName = "PPOC.app"
+            BuildableName = "Library of Congress.app"
             BlueprintName = "PPOC"
             ReferencedContainer = "container:PPOC.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "410239AF197B0243002042EF"
-            BuildableName = "PPOC.app"
+            BuildableName = "Library of Congress.app"
             BlueprintName = "PPOC"
             ReferencedContainer = "container:PPOC.xcodeproj">
          </BuildableReference>

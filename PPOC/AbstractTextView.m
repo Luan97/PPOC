@@ -27,10 +27,28 @@
         [self setFont:font];
         self.backgroundColor=bgColor;
         self.textColor=labelColor;
-        self.text = @"Title";
+        //self.text = @"Title";
         [self setUserInteractionEnabled:NO];
     }
     return self;
+}
+
+-(void)setText:(NSString *)text
+{
+    [super setText:text];
+    
+    if([self respondsToSelector:@selector(layoutManager)]){
+        [self sizeToFit];
+    }else{
+        CGRect newFrame = self.frame;
+        newFrame.size.height = self.contentSize.height;
+        NSLog(@"??? %f", self.contentSize.height);
+        self.frame = newFrame;
+    }
+    
+    
+    //[self sizeToFit];
+    
 }
 
 -(void)setSize:(NSInteger)size{
@@ -40,7 +58,7 @@
 }
 
 -(void)setGlobalStyle{
-    font = [UIFont fontWithName:@"Helvetica" size:12];
+    font = [UIFont fontWithName:@"Helvetica" size:14];
     bgColor=[UIColor clearColor];
     labelColor=[UIColor blackColor];
 }

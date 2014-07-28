@@ -27,6 +27,7 @@
 		410239EB197C1791002042EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410239EA197C1791002042EF /* CoreData.framework */; };
 		410239ED197C17A8002042EF /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 410239EC197C17A8002042EF /* libsqlite3.0.dylib */; };
 		410239F0197C4D1D002042EF /* Results.m in Sources */ = {isa = PBXBuildFile; fileRef = 410239EF197C4D1D002042EF /* Results.m */; };
+		411F04D71985E9AC009264CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411F04D61985E9AC009264CF /* Images.xcassets */; };
 		412B78A0197F50C800770B23 /* navbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 412B789F197F50C800770B23 /* navbar_logo.png */; };
 		412B78A2197F53F900770B23 /* navbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412B78A1197F53F900770B23 /* navbar_logo@2x.png */; };
 		412B78A61981EE3B00770B23 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 412B78A51981EE3B00770B23 /* AsyncImageView.m */; };
@@ -41,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		0438AD7439FA40C0B3A89A5F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		410239B0197B0243002042EF /* PPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		410239B0197B0243002042EF /* Library of Congress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Library of Congress.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		410239B3197B0243002042EF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		410239B5197B0243002042EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		410239B7197B0243002042EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,6 +70,7 @@
 		410239EC197C17A8002042EF /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		410239EE197C4D1D002042EF /* Results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Results.h; sourceTree = "<group>"; };
 		410239EF197C4D1D002042EF /* Results.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Results.m; sourceTree = "<group>"; };
+		411F04D61985E9AC009264CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		412B789F197F50C800770B23 /* navbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_logo.png; sourceTree = "<group>"; };
 		412B78A1197F53F900770B23 /* navbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_logo@2x.png"; sourceTree = "<group>"; };
 		412B78A41981EE3B00770B23 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		410239B1197B0243002042EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				410239B0197B0243002042EF /* PPOC.app */,
+				410239B0197B0243002042EF /* Library of Congress.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +156,7 @@
 				412B78A81981F23A00770B23 /* PPOCDetailViewController.m */,
 				410239D1197B0243002042EF /* PPOCViewController.h */,
 				410239D2197B0243002042EF /* PPOCViewController.m */,
+				411F04D61985E9AC009264CF /* Images.xcassets */,
 				410239BA197B0243002042EF /* Supporting Files */,
 			);
 			path = PPOC;
@@ -238,7 +241,7 @@
 			);
 			name = PPOC;
 			productName = PPOC;
-			productReference = 410239B0197B0243002042EF /* PPOC.app */;
+			productReference = 410239B0197B0243002042EF /* Library of Congress.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,6 +284,7 @@
 				410239BE197B0243002042EF /* InfoPlist.strings in Resources */,
 				412B78A2197F53F900770B23 /* navbar_logo@2x.png in Resources */,
 				41C1A29F198584E000D6F102 /* closeBtn@2x.png in Resources */,
+				411F04D71985E9AC009264CF /* Images.xcassets in Resources */,
 				410239C6197B0243002042EF /* Default.png in Resources */,
 				410239C8197B0243002042EF /* Default@2x.png in Resources */,
 				410239CA197B0243002042EF /* Default-568h@2x.png in Resources */,
@@ -440,11 +444,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0438AD7439FA40C0B3A89A5F /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PPOC/PPOC-Prefix.pch";
 				INFOPLIST_FILE = "PPOC/PPOC-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Library of Congress";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -453,11 +459,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0438AD7439FA40C0B3A89A5F /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PPOC/PPOC-Prefix.pch";
 				INFOPLIST_FILE = "PPOC/PPOC-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Library of Congress";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

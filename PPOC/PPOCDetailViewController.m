@@ -14,6 +14,7 @@
     BOOL ifOS7;
     float w;
     float h;
+    float fontSize;
 }
 
 @end
@@ -112,13 +113,7 @@
         [_scrollView addSubview:_titleLabel];
     }
     
-    _titleLabel.text = _result.title;
-    //adjust the label the the new height.
-    CGRect newFrame = _titleLabel.frame;
-    newFrame.size.height = _titleLabel.contentSize.height;
-    _titleLabel.frame = newFrame;
-    
-    [_titleLabel sizeToFit];
+    [_titleLabel setText:_result.title];
     
     newY = [self getRelativePosition:_titleLabel withMargin:margin];
     _scrollView.contentSize = CGSizeMake(w, newY);

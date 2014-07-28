@@ -11,6 +11,7 @@
 @interface AbstractTextView : UITextView
 
 -(void)setGlobalStyle;
+-(void)setText:(NSString *)text;
 -(void)setSize:(NSInteger)size;
 -(void)setHtmlText:(NSString *)copy;
 
