@@ -40,14 +40,6 @@
                                        forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBackgroundImage:NavigationLandscapeBackground
                                        forBarMetrics:UIBarMetricsLandscapePhone];
-    
-    // Set the text appearance for navbar
-    /*[[UINavigationBar appearance] setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor whiteColor], UITextAttributeTextColor,
-      [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
-      [UIFont fontWithName:@"Times New Roman Bold" size:20], UITextAttributeFont,
-      nil]];*/
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

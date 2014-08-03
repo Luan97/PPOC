@@ -150,6 +150,7 @@
 		410239B9197B0243002042EF /* PPOC */ = {
 			isa = PBXGroup;
 			children = (
+				4195E848198E7A3800C47414 /* views */,
 				41E1FF7D19847EEC0071EBBA /* Helpers */,
 				410239E3197C11E6002042EF /* managers */,
 				410239E2197C11CA002042EF /* models */,
@@ -157,22 +158,12 @@
 				410239C3197B0243002042EF /* PPOCAppDelegate.m */,
 				410239CB197B0243002042EF /* MainStoryboard_iPhone.storyboard */,
 				410239CE197B0243002042EF /* MainStoryboard_iPad.storyboard */,
-				410239D9197B050A002042EF /* PPOCCell.h */,
-				410239DA197B050A002042EF /* PPOCCell.m */,
-				41C1A299198554E600D6F102 /* PPOCImageModalViewController.h */,
-				41C1A29A198554E600D6F102 /* PPOCImageModalViewController.m */,
-				412B78A71981F23A00770B23 /* PPOCDetailViewController.h */,
-				412B78A81981F23A00770B23 /* PPOCDetailViewController.m */,
 				410239D1197B0243002042EF /* PPOCViewController.h */,
 				410239D2197B0243002042EF /* PPOCViewController.m */,
-				411F04D61985E9AC009264CF /* Images.xcassets */,
-				410239BA197B0243002042EF /* Supporting Files */,
-				4111F6121987579900AB489E /* PPOCDoubleCell.h */,
-				4111F6131987579900AB489E /* PPOCDoubleCell.m */,
 				4111F6151989C6C600AB489E /* PPOCIpadTableViewController.h */,
 				4111F6161989C6C600AB489E /* PPOCIpadTableViewController.m */,
-				41F52323198D1CC8007C1C65 /* PPOCIPadDetailViewController.h */,
-				41F52324198D1CC8007C1C65 /* PPOCIPadDetailViewController.m */,
+				411F04D61985E9AC009264CF /* Images.xcassets */,
+				410239BA197B0243002042EF /* Supporting Files */,
 			);
 			path = PPOC;
 			sourceTree = "<group>";
@@ -227,12 +218,37 @@
 			path = AsyncImageView;
 			sourceTree = "<group>";
 		};
+		4195E847198E799400C47414 /* AbstractTextView */ = {
+			isa = PBXGroup;
+			children = (
+				41E1FF7A19847EE10071EBBA /* AbstractTextView.h */,
+				41E1FF7B19847EE10071EBBA /* AbstractTextView.m */,
+			);
+			name = AbstractTextView;
+			sourceTree = "<group>";
+		};
+		4195E848198E7A3800C47414 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				41F52323198D1CC8007C1C65 /* PPOCIPadDetailViewController.h */,
+				41F52324198D1CC8007C1C65 /* PPOCIPadDetailViewController.m */,
+				4111F6121987579900AB489E /* PPOCDoubleCell.h */,
+				4111F6131987579900AB489E /* PPOCDoubleCell.m */,
+				410239D9197B050A002042EF /* PPOCCell.h */,
+				410239DA197B050A002042EF /* PPOCCell.m */,
+				41C1A299198554E600D6F102 /* PPOCImageModalViewController.h */,
+				41C1A29A198554E600D6F102 /* PPOCImageModalViewController.m */,
+				412B78A71981F23A00770B23 /* PPOCDetailViewController.h */,
+				412B78A81981F23A00770B23 /* PPOCDetailViewController.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		41E1FF7D19847EEC0071EBBA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4195E847198E799400C47414 /* AbstractTextView */,
 				412B78A31981EE3B00770B23 /* AsyncImageView */,
-				41E1FF7A19847EE10071EBBA /* AbstractTextView.h */,
-				41E1FF7B19847EE10071EBBA /* AbstractTextView.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";

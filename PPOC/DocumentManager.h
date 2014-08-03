@@ -1,6 +1,5 @@
 //
 //  DocumentManager.h
-//  Baby Follow Up
 //
 //  Created by Luan-Ling Chiang on 11/27/12.
 //
