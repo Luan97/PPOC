@@ -56,7 +56,6 @@
     
     w = self.view.frame.size.width;
     h = self.view.frame.size.height;
-    float fsize= 15;
     float heroY = _heroImage.frame.origin.y;
     float heroH = _heroImage.frame.size.height;
     float controllerH = [self.navigationController navigationBar].frame.size.height;
@@ -69,79 +68,64 @@
     _scrollView.frame = CGRectMake(0, (ifOS7)?totalTopH+20: totalTopH, w, h-totalTopH-margin);
     _scrollView.delegate = self;
     
-    if(!_creatorLabel){
-        _creatorLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, 0, w-margin*2, 20)];
-        [_scrollView addSubview:_creatorLabel];
-    }
-    [_creatorLabel setSize:fsize];
-    _creatorLabel.text = [NSString stringWithFormat:@"Creator: %@", _result.creator];
+    //set creator label
+    newY = 0;
+    _creatorLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"Creator: %@", _result.creator]];
     
-    if(!_pkLabel){
-        newY = [self getRelativePosition:_creatorLabel withMargin:margin];
-        _pkLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
-        [_scrollView addSubview:_pkLabel];
-    }
-    [_pkLabel setSize:fsize];
-    _pkLabel.text = [NSString stringWithFormat:@"PK: %@", _result.pk];
+    //set pk label
+    newY = [self getRelativePosition:_creatorLabel withMargin:margin];
+    _pkLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"PK: %@", _result.pk]];
     
-    if(!_createdLabel){
-        newY = [self getRelativePosition:_pkLabel withMargin:margin];
-        _createdLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
-        [_scrollView addSubview:_createdLabel];
-    }
-    [_createdLabel setSize:fsize];
-    _createdLabel.text = [NSString stringWithFormat:@"Created Pulished Date: %@", _result.created_published_date];
+    //set created label
+    newY = [self getRelativePosition:_pkLabel withMargin:margin];
+    _createdLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"Created Pulished Date: %@", _result.created_published_date]];
     
-    if(!_modifiedLabel){
-        newY = [self getRelativePosition:_createdLabel withMargin:margin];
-        _modifiedLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
-        [_scrollView addSubview:_modifiedLabel];
-    }
-    [_modifiedLabel setSize:fsize];
-    _modifiedLabel.text = [NSString stringWithFormat:@"Modified Date: %@", _result.modified];
+    //set modified label
+    newY = [self getRelativePosition:_createdLabel withMargin:margin];
+    _modifiedLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"Modified Date: %@", _result.modified]];
     
-    if(!_mediumLabel){
-        newY = [self getRelativePosition:_modifiedLabel withMargin:margin];
-        _mediumLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
-        [_scrollView addSubview:_mediumLabel];
-    }
-    [_mediumLabel setSize:fsize];
-    _mediumLabel.text = [NSString stringWithFormat:@"Medium Brief: %@", _result.medium_brief];
+    //set medium label
+    newY = [self getRelativePosition:_modifiedLabel withMargin:margin];
+    _mediumLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"Medium Brief: %@", _result.medium_brief]];
     
-    if(!_titleLabel){
-        newY = [self getRelativePosition:_mediumLabel withMargin:margin];
-        _titleLabel = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
-        [_scrollView addSubview:_titleLabel];
-    }
-    [_titleLabel setSize:fsize];
-    _titleLabel.text = [NSString stringWithFormat:@"Description: \n\n%@", _result.title];
+    //set title label
+    newY = [self getRelativePosition:_mediumLabel withMargin:margin];
+    _titleLabel = [self setupTextViewWithY:newY withCopy:[NSString stringWithFormat:@"Description: \n\n%@", _result.title]];
     
+    //set scrollView content size
     newY = [self getRelativePosition:_titleLabel withMargin:margin];
     _scrollView.contentSize = CGSizeMake(w, newY+30);
     
+    //load AsyncImageView
     [self loadImage];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
+#pragma mark - custom functions
+/*
+ * ------------------------------------------------------------
+ *    factory function to set up AbstractTextView
+ * ------------------------------------------------------------
+ */
+- (AbstractTextView*)setupTextViewWithY:(float)newY withCopy:(NSString*)copy{
+    AbstractTextView* txtView;
+    float fsize = 15;
+    float margin =  16;
     
-    if ([touch view] == _heroImage)
-    {
-        [self performSegueWithIdentifier:@"modalSegue" sender:self];
+    if(!txtView){
+        txtView = [[AbstractTextView alloc]initWithFrame:CGRectMake(margin, newY, w-margin*2, 20)];
+        [_scrollView addSubview:txtView];
     }
+    [txtView setSize:fsize];
+    txtView.text = copy;
+    
+    return txtView;
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    PPOCImageModalViewController* modalViewController = [segue destinationViewController];
-    NSURL* imgUrl = [NSURL URLWithString:[_result.image objectForKey:@"full"]];
-    modalViewController.imageUrl = imgUrl;
-}
-
+/*
+ * ------------------------------------------------------------
+ *    position calculation helper function
+ * ------------------------------------------------------------
+ */
 - (float)getRelativePosition:(AbstractTextView*)txtView withMargin:(float)margin
 {
     float totalH = txtView.frame.origin.y+ txtView.frame.size.height+margin;
@@ -149,12 +133,11 @@
     return totalH;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+/*
+ * ------------------------------------------------------------
+ *    load image function
+ * ------------------------------------------------------------
+ */
 - (void)loadImage
 {
     
@@ -167,5 +150,33 @@
     //load the image
     _heroImage.imageURL = imgUrl;
     [_heroImage setBackgroundColor:[UIColor blackColor]];
+}
+
+#pragma mark - touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    if ([touch view] == _heroImage)
+    {
+        [self performSegueWithIdentifier:@"modalSegue" sender:self];
+    }
+}
+
+#pragma mark - segue
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PPOCImageModalViewController* modalViewController = [segue destinationViewController];
+    NSURL* imgUrl = [NSURL URLWithString:[_result.image objectForKey:@"full"]];
+    modalViewController.imageUrl = imgUrl;
+}
+
+#pragma mark - memory related
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 @end

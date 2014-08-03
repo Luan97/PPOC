@@ -57,13 +57,14 @@
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.minimumLineHeight = fsize+10;
         paragraph.maximumLineHeight = fsize+10;
+        paragraph.lineHeightMultiple = fsize+10;
         NSMutableDictionary *attrsDictionary = [[NSMutableDictionary alloc] init];
-        
-        [attrsDictionary setObject:font forKey:NSFontAttributeName];
         [attrsDictionary setObject:paragraph forKey:NSParagraphStyleAttributeName];
         
         NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attrsDictionary];
+        
         self.attributedText = attributedString;
+        [self setFont:font];
     }else{
         [super setText:text];
     }
