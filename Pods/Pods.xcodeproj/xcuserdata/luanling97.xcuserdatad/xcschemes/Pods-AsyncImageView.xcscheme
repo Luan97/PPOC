@@ -14,10 +14,10 @@
             buildForRunning = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BuildableName = "libPods-Unirest.a"
-               BlueprintIdentifier = "18DD90C8B387431086EF1983"
+               BuildableName = "libPods-AsyncImageView.a"
+               BlueprintIdentifier = "8DBCCB1890684539B0C48878"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BlueprintName = "Pods-Unirest">
+               BlueprintName = "Pods-AsyncImageView">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

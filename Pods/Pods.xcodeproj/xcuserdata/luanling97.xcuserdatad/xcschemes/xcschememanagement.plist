@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AsyncImageView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Unirest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9E1F50C934D8405581236FE2</key>
+		<key>183EA518CE044DA193D77BFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D2F5D67DF3D942688522124D</key>
+		<key>18DD90C8B387431086EF1983</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8DBCCB1890684539B0C48878</key>
 		<dict>
 			<key>primary</key>
 			<true/>
