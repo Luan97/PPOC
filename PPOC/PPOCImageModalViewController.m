@@ -41,19 +41,20 @@
     h = self.view.frame.size.height;
     
     UIColor *blue = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
-    
+    //get close btn style
     _closeBtn.layer.shadowOpacity = 0.7;
     _closeBtn.layer.shadowColor = [blue CGColor];
     _closeBtn.layer.shadowOffset = CGSizeMake(0, 0);
     _closeBtn.layer.shadowRadius = 3;
     _closeBtn.layer.masksToBounds = NO;
     
+    //create scrollview for image
     _imageZoomScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, w, h)];
     [_imageZoomScroll setBackgroundColor:[UIColor blackColor]];
     _imageZoom = [[AsyncImageView alloc]init];
     [_imageZoomScroll addSubview:_imageZoom];
     
-    [[AsyncImageLoader sharedLoader] loadImageWithURL:_imageUrl target:self success:@selector(onImageLoaded) failure:@selector(thumbImageLoadError)];
+    [[AsyncImageLoader sharedLoader] loadImageWithURL:_imageUrl target:self success:@selector(onImageLoaded) failure:@selector(imageLoadError)];
     
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:_imageZoom];
     _imageZoom.imageURL = _imageUrl;
@@ -61,16 +62,26 @@
     [self.view insertSubview:_imageZoomScroll belowSubview:_closeBtn];
 }
 
+#pragma mark - image load complete or error handling
+
+/* -------------------------------------------------------
+ * on image loaded complete
+ * ------------------------------------------------------*/
 -(void)onImageLoaded
 {
-    NSLog(@"image loaded");
     [self getImageScrollView];
 }
 
--(void)thumbImageLoadError
+/* -------------------------------------------------------
+ * on image loaded error
+ * ------------------------------------------------------*/
+
+-(void)imageLoadError
 {
-    
+    //TODO show alert view
 }
+
+#pragma mark - scroll view related
 
 - (void)getImageScrollView
 {
@@ -121,13 +132,19 @@
     _imageZoom.frame = CGRectMake(0, newY, updateW,  updateH);
 }
 
+
+#pragma mark - Close button unwind to detail view
+
+- (IBAction)unwindToDetailView:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - Memory related
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)unwindToDetailView:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
-}
 @end

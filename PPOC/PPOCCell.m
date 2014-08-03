@@ -17,6 +17,9 @@
 @synthesize colorBlock = _colorBlock;
 @synthesize backgroundBlock = _backgroundBlock;
 
+/*-----------------------------------------------------
+ * override hightlitede animation
+ *-----------------------------------------------------*/
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     if(highlighted){
@@ -39,7 +42,7 @@
     }
 }
 
-
+#pragma mark - Thumb loading
 -(void)loadThumb
 {
     NSURL* imgUrl = [NSURL URLWithString:[_imageUrl objectForKey:@"square"]];

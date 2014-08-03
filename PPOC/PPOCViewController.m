@@ -29,47 +29,49 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //get PPOCAppModel thru singleton
     _model = [PPOCAppModel sharedInstance];
     
-    self.navigationController.navigationBar.translucent=true;
     
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        //iOS 7 method check
+        //iOS 7 method check, to make sure content is not covered by UINavigationBar
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     
+    //make the library of congress logo on top with blue shasow
     [self setNavigationBarStyle];
     
+    //get loading screen while fetching data
     [self getLoadScreen];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    
+    //add listener to data map success event
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchCompleted:) name:@"DATA_MAP_SUCCESS" object:nil];
+    
+    //add listener to data loading or parsing error event
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showErrorMsg:) name:@"SHOW_PARSE_ERROR" object:nil];
 }
 
-- (void)showErrorMsg:(NSNotification *) notification
+#pragma mark - Navigation bar styling
+
+- (void)setNavigationBarStyle
 {
-    [spinner stopAnimating];
-    [spinner removeFromSuperview];
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
     
-    if(!errorMsg){
-        errorMsg = [[AbstractTextView alloc]initWithFrame:CGRectMake(35, 100, self.view.frame.size.width-70, 20)];
-        [self.view addSubview:errorMsg];
-        [errorMsg setSize:16];
-    }
-    NSString * error = @"OOPS!\n\n";
-    error = [error stringByAppendingString:[[notification userInfo] objectForKey:@"error"]];
-    error = [error stringByAppendingString:@" Please make sure you have internet access or try again later. \n\nThanks!"];
-    errorMsg.textColor = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
+    UIImage *image = [UIImage imageNamed: @"navbar_logo.png"];
+    UIImageView *imageview = [[UIImageView alloc] initWithImage: image];
+    self.navigationItem.titleView = imageview;
+    UIColor *blue = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
     
-    [errorMsg setText:error];
+    navigationBar.backgroundColor = [UIColor clearColor];
+    navigationBar.layer.shadowOpacity = 0.3;
+    navigationBar.layer.shadowColor = [blue CGColor];
+    navigationBar.layer.shadowOffset = CGSizeMake(0, 0);
+    navigationBar.layer.shadowRadius = 12;
+    navigationBar.layer.masksToBounds = NO;
 }
 
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
+#pragma mark - Loading screen functions
 
 - (void)getLoadScreen
 {
@@ -98,22 +100,26 @@
     }];
 }
 
-- (void)setNavigationBarStyle
+#pragma mark - Event handlers
+
+- (void)showErrorMsg:(NSNotification *) notification
 {
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    [spinner stopAnimating];
+    [spinner removeFromSuperview];
     
-    UIImage *image = [UIImage imageNamed: @"navbar_logo.png"];
-    UIImageView *imageview = [[UIImageView alloc] initWithImage: image];
-    self.navigationItem.titleView = imageview;
-    UIColor *blue = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
+    if(!errorMsg){
+        errorMsg = [[AbstractTextView alloc]initWithFrame:CGRectMake(35, 100, self.view.frame.size.width-70, 20)];
+        [self.view addSubview:errorMsg];
+        [errorMsg setSize:16];
+    }
+    NSString * error = @"OOPS!\n\n";
+    error = [error stringByAppendingString:[[notification userInfo] objectForKey:@"error"]];
+    error = [error stringByAppendingString:@" Please make sure you have internet access or try again later. \n\nThanks!"];
+    errorMsg.textColor = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
     
-    navigationBar.backgroundColor = [UIColor clearColor];
-    navigationBar.layer.shadowOpacity = 0.3;
-    navigationBar.layer.shadowColor = [blue CGColor];
-    navigationBar.layer.shadowOffset = CGSizeMake(0, 0);
-    navigationBar.layer.shadowRadius = 12;
-    navigationBar.layer.masksToBounds = NO;
+    [errorMsg setText:error];
 }
+
 
 - (void)fetchCompleted:(NSNotification *) notification
 {
@@ -178,6 +184,8 @@
     return cell;
 }
 
+#pragma mark - Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showPhotoDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -186,6 +194,8 @@
         destViewController.result = result;
     }
 }
+
+#pragma mark - Memory related
 
 - (void)didReceiveMemoryWarning
 {

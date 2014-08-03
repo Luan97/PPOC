@@ -24,6 +24,7 @@
 @synthesize colorBlockTwo = _colorBlockTwo;
 @synthesize backgroundBlockTwo = _backgroundBlockTwo;
 
+#pragma mark - Custom functions to handle UIButton action for touch down and touch up 
 
 - (IBAction)onButtonDown:(UIButton*)sender {
     UILabel *title;
@@ -82,6 +83,7 @@
     }];
 }
 
+#pragma mark - Thumb loading
 -(void)loadThumb
 {
     NSURL* imgUrl = [NSURL URLWithString:[_imageUrl objectForKey:@"square"]];
@@ -97,8 +99,6 @@
     //load the image
     _image.imageURL = imgUrl;
     _imageTwo.imageURL = imgTwoUrl;
-    
-    //[_image setBackgroundColor:[UIColor blackColor]];
 }
 
 

@@ -11,6 +11,7 @@
 static DocumentManager *sharedInstance = nil;
 
 #pragma mark - Singleton implementation
+
 + (DocumentManager *)sharedInstance {
     if (nil != sharedInstance) {
         return sharedInstance;
@@ -23,6 +24,8 @@ static DocumentManager *sharedInstance = nil;
     
     return sharedInstance;
 }
+
+#pragma mark - ManagedObjecContext and Model
 
 - (NSManagedObjectContext *) managedObjectContext {
     
@@ -46,6 +49,8 @@ static DocumentManager *sharedInstance = nil;
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return managedObjectModel;
 }
+
+#pragma mark - StoreCoordinator
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     

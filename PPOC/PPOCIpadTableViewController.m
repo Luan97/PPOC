@@ -30,47 +30,30 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //get PPOCAppModel thru singleton
     _model = [PPOCAppModel sharedInstance];
     
-    self.navigationController.navigationBar.translucent=true;
     
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        //iOS 7 method check
+        //iOS 7 method check, to make sure content is not covered by UINavigationBar
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     
+    //make the library of congress logo on top with blue shasow
     [self setNavigationBarStyle];
     
+    //get loading screen while fetching data
     [self getLoadScreen];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    
+    //add listener to data map success event
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchCompleted:) name:@"DATA_MAP_SUCCESS" object:nil];
+    
+    //add listener to data loading or parsing error event
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showErrorMsg:) name:@"SHOW_PARSE_ERROR" object:nil];
 }
 
-- (void)showErrorMsg:(NSNotification *) notification
-{
-    [spinner stopAnimating];
-    [spinner removeFromSuperview];
-    
-    if(!errorMsg){
-        errorMsg = [[AbstractTextView alloc]initWithFrame:CGRectMake(35, 100, self.view.frame.size.width-70, 20)];
-        [self.view addSubview:errorMsg];
-        [errorMsg setSize:16];
-    }
-    NSString * error = @"OOPS!\n\n";
-    error = [error stringByAppendingString:[[notification userInfo] objectForKey:@"error"]];
-    error = [error stringByAppendingString:@" Please make sure you have internet access or try again later. \n\nThanks!"];
-    errorMsg.textColor = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
-    
-    [errorMsg setText:error];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
+#pragma mark - Loading screen functions
 
 - (void)getLoadScreen
 {
@@ -99,6 +82,8 @@
     }];
 }
 
+#pragma mark - Navigation bar styling
+
 - (void)setNavigationBarStyle
 {
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
@@ -115,6 +100,26 @@
     navigationBar.layer.shadowRadius = 12;
     navigationBar.layer.masksToBounds = NO;
 }
+
+- (void)showErrorMsg:(NSNotification *) notification
+{
+    [spinner stopAnimating];
+    [spinner removeFromSuperview];
+    
+    if(!errorMsg){
+        errorMsg = [[AbstractTextView alloc]initWithFrame:CGRectMake(35, 100, self.view.frame.size.width-70, 20)];
+        [self.view addSubview:errorMsg];
+        [errorMsg setSize:16];
+    }
+    NSString * error = @"OOPS!\n\n";
+    error = [error stringByAppendingString:[[notification userInfo] objectForKey:@"error"]];
+    error = [error stringByAppendingString:@" Please make sure you have internet access or try again later. \n\nThanks!"];
+    errorMsg.textColor = [UIColor colorWithRed:(0/255.f) green:(120/255.f) blue:(147/255.f) alpha:1.0];
+    
+    [errorMsg setText:error];
+}
+
+#pragma mark - Event handlers
 
 - (void)fetchCompleted:(NSNotification *) notification
 {
@@ -150,6 +155,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"ResultCell"];
     }
     
+    //two result for displaying two content in one table view cell
     Results* result = aResult[indexPath.row*2];
     Results* result2 = aResult[(indexPath.row*2)+1];
     
@@ -215,6 +221,8 @@
     return cell;
 }
 
+#pragma mark - Segue
+
 - (void)showDetailView:(UIButton*)sender
 {
     [self performSegueWithIdentifier:@"showPhotoDetail" sender:sender];
@@ -231,6 +239,8 @@
         destViewController.result = result;
     }
 }
+
+#pragma mark - Memory related
 
 - (void)didReceiveMemoryWarning
 {
