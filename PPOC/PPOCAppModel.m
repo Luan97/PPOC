@@ -15,6 +15,7 @@
 {
     DocumentManager *dManager;
     NSManagedObjectContext *managedObjectContext;
+    
 }
 @end
 
@@ -31,11 +32,21 @@ static PPOCAppModel *sharedInstance = nil;
     return sharedInstance;
 }
 
+-(id)init{
+    self = [super init];
+    if (self){
+        dManager = [DocumentManager sharedInstance];
+        managedObjectContext = [dManager managedObjectContext];
+    }
+    return self;
+}
+
 /* -------------------------------------------------------
  * Fetch data from web service (using UNIRest library)
  * ------------------------------------------------------*/
 - (void)fetchData
 {
+    NSLog(@"fetch DATA");
     NSDictionary *headers = @{@"accept": @"application/json"};
     NSDictionary *parameters = @{@"q": @"congress", @"fo": @"json"};
     __block NSDictionary *userInfo;
@@ -47,7 +58,7 @@ static PPOCAppModel *sharedInstance = nil;
     }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
         NSInteger code = response.code;
         NSData *rawBody = response.rawBody;
-        
+        NSLog(@"??? response %@", response);
         if(!error){
             if(code!=200){
                 return;
@@ -60,12 +71,16 @@ static PPOCAppModel *sharedInstance = nil;
                 NSLog(@"JSON serialization error %@", e);
             }
         }else{
-            NSLog(@"error %@", error);
+            NSLog(@"connect error %@", error.localizedDescription);
             //TODO if connection error, check if there's data saved locally,
             //if not saved, show error msg on load screen
             //if saved, display the saved data
-            userInfo = [NSDictionary dictionaryWithObject:@"There is a connection problem, please try again later on." forKey:@"errorMsg"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PARSE_ERROR" object:nil userInfo:userInfo];
+            
+            dispatch_async(dispatch_get_main_queue(), ^()
+            {
+               userInfo = [NSDictionary dictionaryWithObject:error.localizedDescription forKey:@"error"];
+               [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PARSE_ERROR" object:nil userInfo:userInfo];
+            });
         }
     }];
 }
@@ -84,10 +99,7 @@ static PPOCAppModel *sharedInstance = nil;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^()
     {
-        dManager = [DocumentManager sharedInstance];
-        managedObjectContext = [dManager managedObjectContext];
         NSMutableArray* coreDataResults = [dManager fetchArrayFromDBWithEntity:@"Results" forKey:@"index" withPredicate:Nil];
-        
         bool exist = (coreDataResults.count!=0);
         
         if(!exist){
@@ -122,34 +134,37 @@ static PPOCAppModel *sharedInstance = nil;
 
 - (void)mapEntityProperties:(Results*)result withData:(id)obj
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^()
-    {
-        for(id property in obj){
-            id value= ([obj objectForKey:property]!=[NSNull null])?[obj objectForKey:property]: @"";
-            [result setValue:value forKey:property];
-        }
-    });
+    
+    for(id property in obj){
+        id value= ([obj objectForKey:property]!=[NSNull null])?[obj objectForKey:property]: @"";
+        [result setValue:value forKey:property];
+    }
 }
 
 - (void)saveToContext
 {
     NSError *error = nil;
-    NSDictionary *userInfo;
+    
     if (![managedObjectContext save:&error])
     {
         NSLog(@"%@", error);
     }else{
-        NSMutableArray* coreDataResults = [dManager fetchArrayFromDBWithEntity:@"Results" forKey:@"index" withPredicate:Nil];
-        NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:true];
-        NSArray* sortedArray = [coreDataResults sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
-        
-        userInfo = [NSDictionary dictionaryWithObject:sortedArray forKey:@"results"];
-        
-        dispatch_async(dispatch_get_main_queue(), ^()
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DATA_MAP_SUCCESS" object:nil userInfo:userInfo];
-        });
+        [self DisplayContentWithCoreDataEntiry];
     }
+}
+
+- (void)DisplayContentWithCoreDataEntiry{
+    NSDictionary *userInfo;
+    NSMutableArray* coreDataResults = [dManager fetchArrayFromDBWithEntity:@"Results" forKey:@"index" withPredicate:Nil];
+    NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:true];
+    NSArray* sortedArray = [coreDataResults sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+    
+    userInfo = [NSDictionary dictionaryWithObject:sortedArray forKey:@"results"];
+    
+    dispatch_async(dispatch_get_main_queue(), ^()
+    {
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"DATA_MAP_SUCCESS" object:nil userInfo:userInfo];
+    });
 }
 
 

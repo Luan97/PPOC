@@ -27,6 +27,8 @@
 		410239EB197C1791002042EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410239EA197C1791002042EF /* CoreData.framework */; };
 		410239ED197C17A8002042EF /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 410239EC197C17A8002042EF /* libsqlite3.0.dylib */; };
 		410239F0197C4D1D002042EF /* Results.m in Sources */ = {isa = PBXBuildFile; fileRef = 410239EF197C4D1D002042EF /* Results.m */; };
+		4111F6141987579900AB489E /* PPOCDoubleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4111F6131987579900AB489E /* PPOCDoubleCell.m */; };
+		4111F6171989C6C600AB489E /* PPOCIpadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4111F6161989C6C600AB489E /* PPOCIpadTableViewController.m */; };
 		411F04D71985E9AC009264CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411F04D61985E9AC009264CF /* Images.xcassets */; };
 		412B78A0197F50C800770B23 /* navbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 412B789F197F50C800770B23 /* navbar_logo.png */; };
 		412B78A2197F53F900770B23 /* navbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412B78A1197F53F900770B23 /* navbar_logo@2x.png */; };
@@ -38,6 +40,7 @@
 		41C86BFD197E02B2003FC076 /* NavBackground_L.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C86BFB197E02B2003FC076 /* NavBackground_L.png */; };
 		41C86BFE197E02B2003FC076 /* NavBackground_P.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C86BFC197E02B2003FC076 /* NavBackground_P.png */; };
 		41E1FF7C19847EE10071EBBA /* AbstractTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E1FF7B19847EE10071EBBA /* AbstractTextView.m */; };
+		41F52325198D1CC8007C1C65 /* PPOCIPadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F52324198D1CC8007C1C65 /* PPOCIPadDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,10 @@
 		410239EC197C17A8002042EF /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		410239EE197C4D1D002042EF /* Results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Results.h; sourceTree = "<group>"; };
 		410239EF197C4D1D002042EF /* Results.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Results.m; sourceTree = "<group>"; };
+		4111F6121987579900AB489E /* PPOCDoubleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPOCDoubleCell.h; sourceTree = "<group>"; };
+		4111F6131987579900AB489E /* PPOCDoubleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPOCDoubleCell.m; sourceTree = "<group>"; };
+		4111F6151989C6C600AB489E /* PPOCIpadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPOCIpadTableViewController.h; sourceTree = "<group>"; };
+		4111F6161989C6C600AB489E /* PPOCIpadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPOCIpadTableViewController.m; sourceTree = "<group>"; };
 		411F04D61985E9AC009264CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		412B789F197F50C800770B23 /* navbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_logo.png; sourceTree = "<group>"; };
 		412B78A1197F53F900770B23 /* navbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_logo@2x.png"; sourceTree = "<group>"; };
@@ -86,6 +93,8 @@
 		41C86BFC197E02B2003FC076 /* NavBackground_P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBackground_P.png; sourceTree = "<group>"; };
 		41E1FF7A19847EE10071EBBA /* AbstractTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTextView.h; sourceTree = "<group>"; };
 		41E1FF7B19847EE10071EBBA /* AbstractTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTextView.m; sourceTree = "<group>"; };
+		41F52323198D1CC8007C1C65 /* PPOCIPadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPOCIPadDetailViewController.h; sourceTree = "<group>"; };
+		41F52324198D1CC8007C1C65 /* PPOCIPadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPOCIPadDetailViewController.m; sourceTree = "<group>"; };
 		473F2C04AEB046CAB7CF0DB8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +167,12 @@
 				410239D2197B0243002042EF /* PPOCViewController.m */,
 				411F04D61985E9AC009264CF /* Images.xcassets */,
 				410239BA197B0243002042EF /* Supporting Files */,
+				4111F6121987579900AB489E /* PPOCDoubleCell.h */,
+				4111F6131987579900AB489E /* PPOCDoubleCell.m */,
+				4111F6151989C6C600AB489E /* PPOCIpadTableViewController.h */,
+				4111F6161989C6C600AB489E /* PPOCIpadTableViewController.m */,
+				41F52323198D1CC8007C1C65 /* PPOCIPadDetailViewController.h */,
+				41F52324198D1CC8007C1C65 /* PPOCIPadDetailViewController.m */,
 			);
 			path = PPOC;
 			sourceTree = "<group>";
@@ -338,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				410239C0197B0243002042EF /* main.m in Sources */,
+				4111F6141987579900AB489E /* PPOCDoubleCell.m in Sources */,
 				412B78A61981EE3B00770B23 /* AsyncImageView.m in Sources */,
 				410239C4197B0243002042EF /* PPOCAppDelegate.m in Sources */,
 				412B78A91981F23A00770B23 /* PPOCDetailViewController.m in Sources */,
@@ -345,10 +361,12 @@
 				410239D3197B0243002042EF /* PPOCViewController.m in Sources */,
 				41C1A29B198554E600D6F102 /* PPOCImageModalViewController.m in Sources */,
 				410239DB197B050A002042EF /* PPOCCell.m in Sources */,
+				41F52325198D1CC8007C1C65 /* PPOCIPadDetailViewController.m in Sources */,
 				410239DE197B3E8E002042EF /* PPOCAppModel.m in Sources */,
 				410239E1197B4BDF002042EF /* PPOC_CoreData.xcdatamodeld in Sources */,
 				410239E6197C122A002042EF /* DocumentManager.m in Sources */,
 				410239F0197C4D1D002042EF /* Results.m in Sources */,
+				4111F6171989C6C600AB489E /* PPOCIpadTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

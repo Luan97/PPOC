@@ -29,7 +29,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [_closeBtn setImage:[UIImage imageNamed:@"closeBtn"] forState:UIControlStateNormal];
     }
     return self;
 }

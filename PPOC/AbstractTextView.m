@@ -18,37 +18,63 @@
 
 @implementation AbstractTextView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        [self setGlobalStyle];
-        [self setFont:font];
-        self.backgroundColor=bgColor;
-        self.textColor=labelColor;
-        //self.text = @"Title";
-        [self setUserInteractionEnabled:NO];
+#pragma mark - Initilisation
+
+- (id)initWithFrame:(CGRect)frame {
+    
+    
+    if ((self = [super initWithFrame:frame]))
+    {
+        [self setup];
     }
+    
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        [self setup];
+    }
+    
+    return self;
+}
+
+- (void)setup
+{
+    [self setGlobalStyle];
+    [self setFont:font];
+    self.backgroundColor=bgColor;
+    self.textColor=labelColor;
+    [self setUserInteractionEnabled:NO];
+}
+
+
 -(void)setText:(NSString *)text
 {
-    [super setText:text];
+    if([self respondsToSelector:@selector(attributedText)]){
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.minimumLineHeight = fsize+10;
+        paragraph.maximumLineHeight = fsize+10;
+        NSMutableDictionary *attrsDictionary = [[NSMutableDictionary alloc] init];
+        
+        [attrsDictionary setObject:font forKey:NSFontAttributeName];
+        [attrsDictionary setObject:paragraph forKey:NSParagraphStyleAttributeName];
+        
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attrsDictionary];
+        self.attributedText = attributedString;
+    }else{
+        [super setText:text];
+    }
     
     if([self respondsToSelector:@selector(layoutManager)]){
         [self sizeToFit];
     }else{
         CGRect newFrame = self.frame;
         newFrame.size.height = self.contentSize.height;
-        NSLog(@"??? %f", self.contentSize.height);
         self.frame = newFrame;
     }
-    
-    
-    //[self sizeToFit];
-    
 }
 
 -(void)setSize:(NSInteger)size{
@@ -64,7 +90,6 @@
 }
 
 -(void)setHtmlText:(NSString *)copy{
-    //NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[copy dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     [attributedString addAttributes:@{NSFontAttributeName: font} range:NSMakeRange(0, attributedString.length)];
     

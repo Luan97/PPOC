@@ -13,11 +13,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     
+    //get singleton AppModel for handling data retrieve and stroe to core data
     _model = [PPOCAppModel sharedInstance];
+    //fetch data
     [_model fetchData];
     
+    //customize UINavigationBar layout
     [self customizeAppearance];
     
     return YES;
@@ -40,18 +42,12 @@
                                        forBarMetrics:UIBarMetricsLandscapePhone];
     
     // Set the text appearance for navbar
-    [[UINavigationBar appearance] setTitleTextAttributes:
+    /*[[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor whiteColor], UITextAttributeTextColor,
-      //[UIColor blackColor], UITextAttributeTextShadowColor,
       [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
       [UIFont fontWithName:@"Times New Roman Bold" size:20], UITextAttributeFont,
-      nil]];
-    
-    // Set back button for navbar
-    /*UIImage *backButton = [[UIImage imageNamed:@"blueButton"]  resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    */
+      nil]];*/
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
